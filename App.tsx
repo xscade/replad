@@ -278,7 +278,7 @@ function App() {
       <footer className="bg-slate-900 text-slate-400 py-8 mt-auto">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm mb-4">
-            Developed by Xscade
+            <a href="https://www.xscade.com">Developed by Xscade Technologies</a>
           </p>
           <p className="text-xs opacity-50">
             &copy; {new Date().getFullYear()} Replad Sofa Repair. All rights reserved.
