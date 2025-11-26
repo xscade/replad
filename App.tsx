@@ -77,10 +77,10 @@ function App() {
       console.error(e);
       // If error suggests missing key (e.g. 403/404 entity not found on some endpoints), prompt again
       if (e.message?.includes("Requested entity was not found") || e.message?.includes("API key")) {
-         setHasApiKey(false);
-         setError("Please select a valid API key to continue.");
+        setHasApiKey(false);
+        setError("Please select a valid API key to continue.");
       } else {
-         setError(e.message || "An error occurred while generating the image. Please try again.");
+        setError(e.message || "An error occurred while generating the image. Please try again.");
       }
       setStatus(AppStatus.ERROR);
     }
@@ -117,7 +117,7 @@ function App() {
             Select API Key
           </Button>
           <div className="mt-6 text-xs text-slate-400">
-             See <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noreferrer" className="underline hover:text-[#aa4dc8]">billing documentation</a> for details.
+            See <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" rel="noreferrer" className="underline hover:text-[#aa4dc8]">billing documentation</a> for details.
           </div>
         </div>
       </div>
@@ -136,16 +136,16 @@ function App() {
             </span>
           </div>
           <div className="flex gap-4">
-             <a href="https://repladsofa.com" target="_blank" rel="noreferrer" className="text-sm font-medium text-slate-600 hover:text-[#aa4dc8] transition-colors">
-               Visit Website
-             </a>
+            <a href="https://repladsofa.com" target="_blank" rel="noreferrer" className="text-sm font-medium text-slate-600 hover:text-[#aa4dc8] transition-colors">
+              Visit Website
+            </a>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="flex-grow container mx-auto px-4 py-8">
-        
+
         {/* Intro */}
         {!originalImage && (
           <div className="text-center mb-10 max-w-2xl mx-auto">
@@ -163,97 +163,97 @@ function App() {
           <Uploader onImageSelected={handleImageSelected} />
         ) : (
           <div className="grid lg:grid-cols-12 gap-8">
-            
+
             {/* Left Column: Controls */}
             <div className="lg:col-span-4 space-y-6">
-               <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                 <div className="flex items-center justify-between mb-4">
-                   <h2 className="font-semibold text-slate-900 flex items-center gap-2">
-                     <Sparkles className="w-5 h-5 text-[#aa4dc8]" />
-                     Restoration Options
-                   </h2>
-                   <button onClick={handleReset} className="text-xs text-slate-500 underline hover:text-slate-800">
-                     Upload New Photo
-                   </button>
-                 </div>
+              <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="font-semibold text-slate-900 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-[#aa4dc8]" />
+                    Restoration Options
+                  </h2>
+                  <button onClick={handleReset} className="text-xs text-slate-500 underline hover:text-slate-800">
+                    Upload New Photo
+                  </button>
+                </div>
 
-                 {/* Custom Prompt */}
-                 <div className="mb-6">
-                   <label htmlFor="prompt" className="block text-sm font-medium text-slate-700 mb-2">
-                     Describe your goal
-                   </label>
-                   <textarea
-                     id="prompt"
-                     className="w-full p-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#aa4dc8] focus:border-transparent outline-none transition-all resize-none h-24"
-                     placeholder="E.g., Change fabric to blue velvet, repair cat scratches..."
-                     value={prompt}
-                     onChange={(e) => setPrompt(e.target.value)}
-                     disabled={status === AppStatus.LOADING}
-                   />
-                 </div>
+                {/* Custom Prompt */}
+                <div className="mb-6">
+                  <label htmlFor="prompt" className="block text-sm font-medium text-slate-700 mb-2">
+                    Describe your goal
+                  </label>
+                  <textarea
+                    id="prompt"
+                    className="w-full p-3 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#aa4dc8] focus:border-transparent outline-none transition-all resize-none h-24"
+                    placeholder="E.g., Change fabric to blue velvet, repair cat scratches..."
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                    disabled={status === AppStatus.LOADING}
+                  />
+                </div>
 
-                 {/* Quick Actions */}
-                 <div className="space-y-2 mb-6">
-                   <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Quick Actions</p>
-                   {PREDEFINED_PROMPTS.map((item, idx) => (
-                     <button
-                       key={idx}
-                       onClick={() => setPrompt(item.text)}
-                       className={`w-full text-left px-3 py-2 rounded-md text-sm border transition-colors flex items-center gap-2
-                         ${prompt === item.text 
-                           ? 'bg-[#aa4dc8]/10 border-[#aa4dc8] text-[#aa4dc8]' 
-                           : 'border-slate-100 hover:bg-slate-50 text-slate-600'
-                         }`}
-                       disabled={status === AppStatus.LOADING}
-                     >
-                       {item.icon}
-                       {item.label}
-                     </button>
-                   ))}
-                 </div>
+                {/* Quick Actions */}
+                <div className="space-y-2 mb-6">
+                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Quick Actions</p>
+                  {PREDEFINED_PROMPTS.map((item, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setPrompt(item.text)}
+                      className={`w-full text-left px-3 py-2 rounded-md text-sm border transition-colors flex items-center gap-2
+                         ${prompt === item.text
+                          ? 'bg-[#aa4dc8]/10 border-[#aa4dc8] text-[#aa4dc8]'
+                          : 'border-slate-100 hover:bg-slate-50 text-slate-600'
+                        }`}
+                      disabled={status === AppStatus.LOADING}
+                    >
+                      {item.icon}
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
 
-                 <Button 
-                   onClick={handleGenerate} 
-                   className="w-full h-12 text-lg shadow-lg shadow-[#aa4dc8]/20"
-                   disabled={!prompt.trim()}
-                   isLoading={status === AppStatus.LOADING}
-                 >
-                   Generate Preview
-                 </Button>
+                <Button
+                  onClick={handleGenerate}
+                  className="w-full h-12 text-lg shadow-lg shadow-[#aa4dc8]/20"
+                  disabled={!prompt.trim()}
+                  isLoading={status === AppStatus.LOADING}
+                >
+                  Generate Preview
+                </Button>
 
-                 {error && (
-                   <div className="mt-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg flex items-start gap-2 border border-red-100">
-                     <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
-                     {error}
-                   </div>
-                 )}
-               </div>
+                {error && (
+                  <div className="mt-4 p-3 bg-red-50 text-red-600 text-sm rounded-lg flex items-start gap-2 border border-red-100">
+                    <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+                    {error}
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Right Column: Visualization */}
             <div className="lg:col-span-8">
               {status === AppStatus.SUCCESS && generatedImage ? (
                 <div className="space-y-4 animate-in fade-in duration-700">
-                  <ComparisonSlider 
-                    beforeImage={originalImage} 
-                    afterImage={generatedImage} 
+                  <ComparisonSlider
+                    beforeImage={originalImage}
+                    afterImage={generatedImage}
                   />
                   <div className="flex justify-center gap-4 mt-6">
-                     <Button variant="outline" onClick={() => {
-                        const link = document.createElement('a');
-                        link.href = generatedImage;
-                        link.download = 'replad-restored-sofa.png';
-                        link.click();
-                     }}>
-                       Download Result
-                     </Button>
+                    <Button variant="outline" onClick={() => {
+                      const link = document.createElement('a');
+                      link.href = generatedImage;
+                      link.download = 'replad-restored-sofa.png';
+                      link.click();
+                    }}>
+                      Download Result
+                    </Button>
                   </div>
                 </div>
               ) : (
                 <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
-                  <img 
-                    src={originalImage} 
-                    alt="Original Upload" 
+                  <img
+                    src={originalImage}
+                    alt="Original Upload"
                     className={`w-full h-full object-cover transition-opacity duration-500 ${status === AppStatus.LOADING ? 'opacity-50 blur-sm' : ''}`}
                   />
                   {status === AppStatus.LOADING && (
@@ -278,7 +278,7 @@ function App() {
       <footer className="bg-slate-900 text-slate-400 py-8 mt-auto">
         <div className="container mx-auto px-4 text-center">
           <p className="text-sm mb-4">
-            Powered by Google Gemini 3 Pro Image
+            Developed by Xscade
           </p>
           <p className="text-xs opacity-50">
             &copy; {new Date().getFullYear()} Replad Sofa Repair. All rights reserved.
